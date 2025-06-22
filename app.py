@@ -28,7 +28,7 @@ def answer_question(user_input, history):
     # Calculate cosine similarity to each chunk
     similarities = cosine_similarity(query_vector, embeddings)[0]
     
-    # Get indices of top 3 msot similar chunks
+    # Get indices of top 3 most similar chunks
     top_indices = similarities.argsort()[-5:][::-1] # sort descending
     print(similarities[top_indices])
 
@@ -58,7 +58,7 @@ def answer_question(user_input, history):
     Answer:"""
 
     # Generate the response using GPT-Neo
-    result = generator(prompt, max_new_tokens=150)
+    result = generator(prompt, max_new_tokens=100)
     
     # Get the actual generated string
     response = result[0]["generated_text"]
@@ -73,12 +73,16 @@ def answer_question(user_input, history):
 chatbot = gr.ChatInterface(
     fn=answer_question,
     type="messages",
+    examples=["What programs do you offer?", "How do I contact Russell Tennis Center?", "What program can a 6-9 year old do?", "What program can a 10-12 year old do?", "What program can a 12-18 year old do?"],
+    run_examples_on_click=True,
+    cache_examples=True,
     title="🎾 Russell Tennis Center Chatbot",
-    theme="soft",
-    examples=["How do I contact Russell Tennis Center?", "What programs do you offer?", "What program can a 12 year old do?"],
     description="Ask me anything about programs, clinics, camps, or anything else from the RTC website!",
+    theme="soft",
+    submit_btn="Ask",
+    stop_btn="Stop", 
 )
 
 # Wrap anser_question function with Gradio's ChatInterface
 if __name__ == "__main__":
-    chatbot.launch()
+    chatbot.launch(share=True)
