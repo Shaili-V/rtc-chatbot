@@ -15,7 +15,7 @@ embeddings = data["embeddings"]
 embed_model = SentenceTransformer("all-mpnet-base-v2")
 
 # Load Eleuther's GPT-Neo 125M response model for text generation
-generator = pipeline('text-generation', model='mistralai/Mistral-7B-Instruct-v0.1', torch_dtype="auto", device_map="auto")
+generator = pipeline('text2text-generation', model='google/flan-t5-base', device=-1)
 
 # Set seed for reproducibility
 # set_seed(42)
