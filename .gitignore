@@ -1,0 +1,17 @@
+# Ignore bytecode
+__pycache__/
+*.py[cod]
+# Ignore virtual environment
+venv/
+# Ignore data and logs
+*.pkl
+*.json
+*.log
+# Ignore OS files
+.DS_Store
+# Ifnore raw scrape files except for rtc_cleaned.txt
+*.txt
+!rtc_cleaned.txt 
+
+
+
