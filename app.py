@@ -6,18 +6,16 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import requests
 import os
-
-file_ID = "1XxKjr-Ml_yUyvNpm_dQvYKusJFDBTXwX"
+import gdown
 
 def download_embeddings():
-    url = "https://drive.google.com/file/d/1XxKjr-Ml_yUyvNpm_dQvYKusJFDBTXwX" 
-    local_path = "embeddings.pkl"
+    file_id = "1XxKjr-Ml_yUyvNpm_dQvYKusJFDBTXwX"
+    url = f"https://drive.google.com/uc?id=1XxKjr-Ml_yUyvNpm_dQvYKusJFDBTXwX"
+    output = "embeddings.pkl"
 
-    if not os.path.exists(local_path):
+    if not os.path.exists(output):
         print("Downloading embeddings.pkl from Google Drive...")
-        response = requests.get(url)
-        with open(local_path, "wb") as f:
-            f.write(response.content)
+        gdown.download(url, output, quiet=False)
         print("Download complete.")
     else:
         print("embeddings.pkl already exists.")
