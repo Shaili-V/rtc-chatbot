@@ -5,7 +5,6 @@ __pycache__/
 venv/
 # Ignore data and logs
 *.pkl
-!embeddings.pkl
 *.json
 *.log
 # Ignore OS files
