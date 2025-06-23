@@ -5,6 +5,7 @@ __pycache__/
 venv/
 # Ignore data and logs
 *.pkl
+!embeddings.pkl
 *.json
 *.log
 # Ignore OS files
@@ -12,6 +13,7 @@ venv/
 # Ifnore raw scrape files except for rtc_cleaned.txt
 *.txt
 !rtc_cleaned.txt 
+!requirements.txt
 
 
 

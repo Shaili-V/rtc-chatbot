@@ -4,6 +4,27 @@ from sentence_transformers import SentenceTransformer
 from transformers import pipeline
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
+import requests
+import os
+
+file_ID = "1XxKjr-Ml_yUyvNpm_dQvYKusJFDBTXwX"
+
+def download_embeddings():
+    url = "https://drive.google.com/file/d/1XxKjr-Ml_yUyvNpm_dQvYKusJFDBTXwX" 
+    local_path = "embeddings.pkl"
+
+    if not os.path.exists(local_path):
+        print("Downloading embeddings.pkl from Google Drive...")
+        response = requests.get(url)
+        with open(local_path, "wb") as f:
+            f.write(response.content)
+        print("Download complete.")
+    else:
+        print("embeddings.pkl already exists.")
+
+download_embeddings()
+
+
 
 # Load chunks and embeddings from pickle file
 with open("embeddings.pkl", "rb") as f:
